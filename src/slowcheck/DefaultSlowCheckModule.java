@@ -1,13 +1,18 @@
 package slowcheck;
 
 import org.scalacheck.Arbitrary;
+import org.scalacheck.Gen.Params;
 import org.scalacheck.Shrink;
 
+import scala.math.BigDecimal;
 import scala.math.BigInt;
+import scala.runtime.BoxedUnit;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.TypeType;
 import com.google.inject.name.Names;
+
+import java.util.Date;
 
 public class DefaultSlowCheckModule extends AbstractModule {
 
@@ -17,15 +22,13 @@ public class DefaultSlowCheckModule extends AbstractModule {
 		bindShrink(BigInt.class, Shrink.<BigInt>shrinkAny());
 		bindArb(String.class, Arbitrary.arbString());
 		bindArb(BigInt.class,Arbitrary.arbBigInt());
-//		bindArb(BigDecimal.class,Arbitrary.arbBigDecimal());
-//		bindArb(Date.class,Arbitrary.arbDate());
-//		bindArb(Number.class,Arbitrary.arbNumber());
-//		bindArb(Throwable.class,Arbitrary.arbThrowable());
-//		bindArb(Params.class,Arbitrary.arbGenParams());
-//		bindArb(org.scalacheck.Prop.class,Arbitrary.arbProp());
-//		bindArb(BoxedUnit.class,Arbitrary.arbUnit());
-		
-		System.out.println("Penises");
+		bindArb(BigDecimal.class,Arbitrary.arbBigDecimal());
+		bindArb(Date.class,Arbitrary.arbDate());
+		bindArb(Number.class,Arbitrary.arbNumber());
+		bindArb(Throwable.class,Arbitrary.arbThrowable());
+		bindArb(Params.class,Arbitrary.arbGenParams());
+		bindArb(org.scalacheck.Prop.class,Arbitrary.arbProp());
+		bindArb(BoxedUnit.class,Arbitrary.arbUnit());
 		
 		requestStaticInjection(JavaPropImplementation.class);
 	}
